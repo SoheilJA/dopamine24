@@ -243,11 +243,17 @@
      اسکرول نرم (فقط دسکتاپ بدون کاهش حرکت)
      ========================================================================== */
   function initSmoothScroll() {
-    if (!ENV.hasLenis || !ENV.desktop || ENV.reduced) return null;
-    const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+    if (!ENV.hasLenis || ENV.reduced) return null;
+    /* duration پایین‌تر = اسکرول پاسخ‌گاتر؛ easing طبیعی برای توقف نرم */
+    const lenis = new Lenis({
+      duration: 0.45,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      smoothWheel: true,
+      smoothTouch: false
+    });
     if (hasGSAP) {
       lenis.on('scroll', () => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update(); });
-      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
     } else {
       const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
