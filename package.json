@@ -1,0 +1,13 @@
+{
+  "name": "dopamine-redesign",
+  "version": "1.0.0",
+  "private": true,
+  "description": "بازطراحی رابط کاربری وب‌سایت گروه علمی آموزشی دوپامین — وب‌سایت چندصفحه‌ای فارسی و RTL با پلتفرم آزمون‌های خودشناسی تعاملی (بدون فریم‌ورک)",
+  "direction": "rtl",
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "dev:node": "npx --yes serve . -l 3000"
+  },
+  "keywords": ["dopamine", "psychology", "persian", "rtl", "vanilla-js", "gsap"],
+  "license": "MIT"
+}

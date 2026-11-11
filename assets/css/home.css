@@ -1,0 +1,363 @@
+/* ==========================================================================
+   دوپامین — صفحهٔ اصلی
+   هیرو، تیکر، معرفی، دپارتمان‌ها، پیش‌نمایش آزمون‌ها، آمار،
+   چرا دوپامین، برنامه‌های ویژه، وبلاگ، سوالات متداول، CTA پایانی
+   ========================================================================== */
+
+/* ---------- هیرو ---------- */
+/* عناصر هیرو تا شروع کورئوگرافی مخفی‌اند (فقط وقتی JS فعال است) */
+.js [data-hero], .js [data-hero-blob], .js [data-hero-ring], .js [data-hero-flower] {
+  opacity: 0;
+}
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(30px, 5vw, 64px));
+  padding-bottom: clamp(40px, 6vw, 84px);
+  overflow: clip;
+  min-height: 92svh;
+  display: flex; align-items: center;
+}
+.hero__grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: clamp(28px, 4vw, 64px); align-items: center;
+  position: relative; z-index: 2;
+}
+@media (max-width: 1024px) {
+  .hero { min-height: 0; }
+  .hero__grid { grid-template-columns: 1fr; }
+}
+.hero__content { display: grid; gap: clamp(16px, 2.4vw, 24px); justify-items: start; }
+.hero__title { max-width: 15ch; }
+.hero__cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+.hero__trust {
+  display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  margin-top: 10px; font-size: var(--fs-sm); color: var(--ink-3);
+}
+.hero__trust b { color: var(--ink); }
+
+/* چیدمان بصری هیرو */
+.hero__visual { position: relative; min-height: 520px; }
+@media (max-width: 1024px) {
+  .hero__visual { min-height: 440px; margin-top: 10px; }
+}
+.hero__portrait {
+  position: absolute; inset-inline-start: 50%; top: 50%;
+  width: min(360px, 72%); aspect-ratio: 4 / 4.5;
+  /* کمی به سمت راست شیفت شده تا کارت تیزر چپ، صورت سوژه را نپوشاند */
+  transform: translate(calc(50% + 46px), -50%);
+  border-radius: 190px 190px 26px 26px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: var(--shadow-2);
+}
+.hero__portrait img { width: 100%; height: 100%; object-fit: cover; }
+.hero__portrait::after { /* لایهٔ گرمِ ملایم */
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 62%, rgba(156,24,31,.14));
+  pointer-events: none;
+}
+
+/* حلقهٔ موج‌دار دور پرتره */
+.hero__ring {
+  position: absolute; inset-inline-start: 50%; top: 50%;
+  width: min(460px, 92%); aspect-ratio: 1;
+  transform: translate(calc(50% + 46px), -50%) rotate(-2deg);
+  pointer-events: none;
+}
+.hero__ring path {
+  fill: none; stroke: var(--gold); stroke-width: 3.4;
+  stroke-linecap: round; stroke-dasharray: 12 15;
+}
+
+/* کارت تیزر آزمون */
+.hero__teaser {
+  position: absolute; inset-inline-end: 0; bottom: 18px;
+  width: min(296px, 84%);
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 20px;
+  box-shadow: var(--shadow-2);
+  z-index: 3;
+}
+.hero__teaser-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--fs-xs); font-weight: 700; color: var(--brand);
+  background: var(--brand-ink); padding: 5px 12px; border-radius: var(--r-pill);
+  margin-bottom: 10px;
+}
+.hero__teaser-q { font-weight: 800; font-size: .98rem; line-height: 1.75; margin-bottom: 12px; }
+.hero__teaser-opts { display: grid; gap: 8px; }
+.hero__teaser-opt {
+  display: flex; align-items: center; gap: 9px;
+  padding: 10px 13px; border-radius: 13px;
+  border: 1.5px solid var(--line); background: var(--bg);
+  font-size: .86rem; font-weight: 600; color: var(--ink-2); text-align: start;
+  transition: border-color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease),
+              color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+  cursor: pointer; width: 100%;
+}
+.hero__teaser-opt:hover { border-color: var(--gold); transform: translateX(-3px); }
+.hero__teaser-opt.is-picked {
+  border-color: var(--brand); background: var(--brand-ink); color: var(--ink);
+}
+.hero__teaser-opt .icon { width: 16px; height: 16px; color: var(--gold-deep); flex: none; }
+.hero__teaser-result {
+  display: grid; gap: 10px; justify-items: start;
+}
+.hero__teaser-result p { font-size: .88rem; color: var(--ink-2); line-height: 1.85; }
+.hero__teaser-note { font-size: var(--fs-xs); color: var(--ink-3); margin-top: 8px; }
+
+/* استیکرهای شناور */
+.hero__badge {
+  position: absolute; z-index: 4;
+}
+.hero__badge--1 { top: 8px; inset-inline-start: 4%; transform: rotate(4deg); }
+.hero__badge--2 { bottom: 8%; inset-inline-start: 0; transform: rotate(-5deg); }
+
+/* شکل‌های تزئینی هیرو */
+.hero__shape { position: absolute; pointer-events: none; z-index: 0; }
+.hero__flower { color: var(--sun); }
+
+/* موبایل/تبلت: کامپوزیشنِ جریانی به‌جای چیدمان مطلق
+   (باید بعد از تعریف‌های بالا باشد تا override کند) */
+@media (max-width: 1024px) {
+  .hero__visual {
+    min-height: 0;
+    display: grid;
+    gap: 20px;
+    padding-top: 6px;
+  }
+  .hero__portrait {
+    position: static; transform: none;
+    width: min(340px, 86%);
+    margin-inline: auto;
+    border-radius: 170px 170px 22px 22px;
+  }
+  .hero__ring { display: none; }
+  .hero__teaser { position: static; width: 100%; box-shadow: var(--shadow-1); }
+  .hero__badge--1 { top: -14px; inset-inline-start: 2%; }
+  .hero__badge--2 { display: none; }
+}
+
+/* ---------- تیکر خدمات ---------- */
+.ticker-band {
+  border-block: 1px solid var(--line);
+  background: var(--paper);
+  padding-block: 18px;
+}
+
+/* ---------- معرفی دوپامین ---------- */
+.about-grid {
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: clamp(32px, 5vw, 72px); align-items: center;
+}
+@media (max-width: 1024px) { .about-grid { grid-template-columns: 1fr; } }
+.about-text { display: grid; gap: 18px; justify-items: start; }
+.about-collage {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.about-collage figure {
+  border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--line); margin: 0;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.about-collage figure:hover { transform: translateY(-5px) rotate(.5deg); box-shadow: var(--shadow-2); }
+.about-collage img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/3.6; }
+.about-collage figure:nth-child(1) { transform: rotate(1.4deg); }
+.about-collage figure:nth-child(2) { transform: rotate(-1.6deg) translateY(16px); }
+.about-collage figure:nth-child(3) { transform: rotate(-1deg); }
+.about-collage figure:nth-child(4) {
+  display: grid; place-items: center; text-align: center;
+  background: var(--brand); color: #fff; padding: 22px;
+}
+.about-collage figure:nth-child(4) .num { font-size: 2.2rem; }
+.about-collage figure:nth-child(4):hover { background: var(--brand-deep); }
+.about-collage .mini-quote { font-size: .9rem; line-height: 1.9; font-weight: 600; }
+
+/* ---------- کارت دپارتمان ---------- */
+.dept-card { display: flex; flex-direction: column; gap: 12px; }
+.dept-card__tag { font-size: var(--fs-xs); color: var(--ink-3); font-weight: 600; }
+
+/* ---------- پیش‌نمایش آزمون‌ها ---------- */
+.assess-band {
+  position: relative; overflow: clip;
+  background:
+    radial-gradient(60% 90% at 85% 10%, var(--brand-ink) 0%, transparent 55%),
+    radial-gradient(50% 70% at 8% 90%, var(--gold-ink) 0%, transparent 55%),
+    var(--bg-soft);
+  border-radius: var(--r-xl);
+  padding: clamp(32px, 5vw, 64px);
+}
+.assess-band__grid {
+  display: grid; grid-template-columns: 1.15fr .85fr;
+  gap: clamp(28px, 4vw, 56px); align-items: center;
+}
+@media (max-width: 1024px) { .assess-band__grid { grid-template-columns: 1fr; } }
+.assess-demo {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 24px;
+  box-shadow: var(--shadow-2);
+  position: relative;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.assess-demo:hover { transform: translateY(-4px); }
+.assess-demo::before { /* برچسب چرخان */
+  content: 'دموی زنده';
+  position: absolute; top: -15px; inset-inline-end: 22px;
+  background: var(--ink); color: var(--bg);
+  font-size: var(--fs-xs); font-weight: 700;
+  padding: 5px 14px; border-radius: var(--r-pill);
+  transform: rotate(3deg);
+}
+.assess-demo__row { display: flex; align-items: center; gap: 14px; }
+.assess-demo__avatars { display: flex; }
+.assess-demo__avatars span {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 3px solid var(--paper);
+  display: grid; place-items: center; font-size: .8rem; font-weight: 800; color: #fff;
+}
+.assess-demo__avatars span:not(:first-child) { margin-inline-start: -12px; }
+.assess-mini-list { display: grid; gap: 10px; margin-top: 16px; }
+.assess-mini {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 13px 16px; border-radius: 15px;
+  border: 1.5px solid var(--line); background: var(--bg);
+  transition: border-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
+}
+.assess-mini:hover { border-color: var(--gold); transform: translateX(-4px); background: #FDFBF5; }
+.assess-mini b { font-size: .94rem; }
+.assess-mini small { display: block; color: var(--ink-3); font-size: .78rem; }
+.assess-mini .icon { width: 17px; height: 17px; color: var(--ink-3); transition: color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease); }
+.assess-mini:hover .icon { color: var(--brand); transform: translateX(-3px); }
+
+/* ---------- نوار آمار ---------- */
+.stats-band {
+  background: var(--ink); color: var(--bg);
+  border-radius: var(--r-xl);
+  padding: clamp(30px, 4.6vw, 56px);
+  position: relative; overflow: clip;
+}
+.stats-band::before {
+  content: ''; position: absolute; inset-inline-end: -80px; top: -80px;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,144,.22), transparent 68%);
+}
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; position: relative; }
+@media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.stat { display: grid; gap: 6px; justify-items: start; }
+.stat__num {
+  font-size: clamp(2.4rem, 4.4vw, 3.6rem); font-weight: 900; line-height: 1.1;
+  color: var(--gold);
+}
+.stat__num .suffix { color: var(--bg); }
+.stat__label { font-size: .95rem; color: #B4AB98; font-weight: 600; }
+.stat__ico {
+  width: 44px; height: 44px; border-radius: 13px;
+  display: grid; place-items: center; margin-bottom: 8px;
+  background: rgba(250,246,237,.08); color: var(--gold);
+  border: 1px solid rgba(250,246,237,.14);
+}
+.stat__ico .icon { width: 20px; height: 20px; }
+
+/* ---------- چرا دوپامین ---------- */
+.why-card { display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- برنامه‌های ویژه ---------- */
+.prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 30px); }
+@media (max-width: 900px) { .prog-grid { grid-template-columns: 1fr; } }
+.prog-card {
+  position: relative; overflow: hidden;
+  border-radius: var(--r-xl); padding: clamp(26px, 3.6vw, 42px);
+  min-height: 340px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 12px;
+  color: #fff;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.prog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-2); }
+.prog-card:active { transform: translateY(-2px) scale(.99); }
+.prog-card--trip { background: var(--brand); }
+.prog-card--walk { background: #2F4B33; }
+.prog-card__ico {
+  width: 58px; height: 58px; border-radius: 18px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.14); color: #fff;
+  border: 1px solid rgba(255,255,255,.22);
+  margin-bottom: auto;
+  transition: transform var(--dur-2) var(--ease-spring);
+}
+.prog-card:hover .prog-card__ico { transform: rotate(-7deg) scale(1.08); }
+.prog-card__ico .icon { width: 27px; height: 27px; }
+.prog-card h3 { font-size: 1.5rem; color: #fff; }
+.prog-card p { color: rgba(255,255,255,.82); font-size: .95rem; max-width: 46ch; }
+.prog-card__tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.prog-card__tags span {
+  font-size: var(--fs-xs); font-weight: 700;
+  background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.2);
+  padding: 4px 12px; border-radius: var(--r-pill);
+}
+.prog-card__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: .95rem; color: #fff; margin-top: 6px;
+}
+.prog-card__link .icon { width: 17px; height: 17px; transition: transform var(--dur-2) var(--ease); }
+.prog-card:hover .prog-card__link .icon { transform: translateX(-4px); }
+
+/* ---------- وبلاگ ---------- */
+.posts-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(18px, 2.6vw, 26px);
+}
+@media (max-width: 1100px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .posts-grid { grid-template-columns: 1fr; } }
+.post-card { display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden; }
+.post-card .media { aspect-ratio: 16/10; overflow: hidden; border-radius: calc(var(--r-lg) - 1px); position: relative; }
+.post-card .media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-4) var(--ease); }
+.post-card:hover .media img { transform: scale(1.06); }
+.post-card .media .chip { position: absolute; top: 14px; inset-inline-start: 14px; backdrop-filter: blur(6px); }
+.post-card .body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.post-card .body h3 { font-size: 1.06rem; }
+.post-card .body p { color: var(--ink-2); font-size: .9rem; flex: 1; }
+.post-card .meta { display: flex; align-items: center; justify-content: space-between; color: var(--ink-3); font-size: var(--fs-xs); }
+
+/* ---------- FAQ ---------- */
+.faq-grid {
+  display: grid; grid-template-columns: .8fr 1.2fr;
+  gap: clamp(28px, 4vw, 56px); align-items: start;
+}
+@media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+.faq-aside {
+  position: sticky; top: calc(var(--header-h) + 24px);
+  display: grid; gap: 16px; justify-items: start;
+}
+.faq-aside__card {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 20px 22px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.faq-aside__card .icon { width: 21px; height: 21px; color: var(--brand); flex: none; margin-top: 4px; }
+.faq-aside__card p { font-size: var(--fs-sm); color: var(--ink-2); }
+.faq-aside__card b { color: var(--ink); }
+
+/* ---------- CTA پایانی ---------- */
+.final-cta {
+  position: relative; overflow: clip;
+  background: var(--ink); color: var(--bg);
+  border-radius: var(--r-xl);
+  padding: clamp(36px, 6vw, 76px);
+  display: grid; gap: 22px; justify-items: center; text-align: center;
+}
+.final-cta::before {
+  content: ''; position: absolute; inset-inline-start: -110px; bottom: -130px;
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(156,24,31,.4), transparent 66%);
+}
+.final-cta::after {
+  content: ''; position: absolute; inset-inline-end: -80px; top: -90px;
+  width: 280px; height: 280px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,144,.2), transparent 68%);
+}
+.final-cta > * { position: relative; }
+.final-cta h2 { color: var(--bg); max-width: 22ch; }
+.final-cta p { color: #B4AB98; max-width: 52ch; }
+.final-cta .btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.final-cta .sticker { transform: rotate(2deg); }

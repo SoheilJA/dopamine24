@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ورود — دوپامین</title>
+  <meta name="description" content="ورود به حساب کاربری دوپامین.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="login">
+  <a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+  <main id="main">
+    <div class="auth-shell">
+      <form class="auth-card" data-demo novalidate data-reveal>
+        <img class="logo-mark" src="assets/img/logo.png" alt="لوگوی دوپامین" width="203" height="59">
+        <div style="display:grid;gap:6px">
+          <h1>خوش برگشتی!</h1>
+          <p class="hint-line">برای ادامه وارد حساب خودت شو.</p>
+        </div>
+        <div class="field">
+          <label for="lg-mail">ایمیل یا شمارهٔ موبایل</label>
+          <input class="input" id="lg-mail" type="text" placeholder="example@mail.com" required>
+          <span class="err-msg">ایمیل یا شمارهٔ موبایل را وارد کنید.</span>
+        </div>
+        <div class="field">
+          <label for="lg-pass">رمز عبور</label>
+          <input class="input" id="lg-pass" type="password" placeholder="••••••••" required minlength="6">
+          <span class="err-msg">رمز عبور (حداقل ۶ کاراکتر) را وارد کنید.</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="check" style="padding:0;border:none;background:none">
+            <input type="checkbox"> <span class="box"><i data-lucide="check" class="icon"></i></span>
+            <span class="small">مرا به خاطر بسپار</span>
+          </label>
+          <a class="small" href="#" style="color:var(--brand);font-weight:700" data-no-curtain>رمزم را فراموش کردم</a>
+        </div>
+        <button class="btn btn--primary btn--lg" type="submit">ورود <i data-lucide="arrow-left" class="icon icon--arrow"></i></button>
+        <div class="auth-sep">یا</div>
+        <a class="btn btn--outline" href="assessments.html">فعلاً آزمون می‌دهم — بدون حساب <i data-lucide="zap" class="icon"></i></a>
+        <p class="alt-action">حساب نداری؟ <a href="register.html">ثبت‌نام کن</a></p>
+      </form>
+    </div>
+  </main>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="assets/vendor/lucide.min.js" defer></script>
+  <script src="assets/js/data/site.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+/* ==========================================================================
+   دوپامین — صفحات داخلی
+   خدمات، دپارتمان‌ها، درباره، تیم، تماس، وبلاگ، مقاله،
+   مشاوره، ورود/ثبت‌نام و 404
+   ========================================================================== */
+
+/* ---------- کارت ویژگی دپارتمان ---------- */
+.feature-card { display: flex; flex-direction: column; gap: 12px; }
+
+/* جعبهٔ CTA انتهای صفحه */
+.dept-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 22px;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-xl); padding: clamp(24px, 3.6vw, 40px);
+  flex-wrap: wrap;
+}
+.dept-cta__text { max-width: 52ch; display: grid; gap: 6px; }
+@media (max-width: 700px) { .dept-cta { justify-content: center; text-align: center; } .dept-cta__text { justify-items: center; } }
+
+/* ---------- صفحهٔ درباره ---------- */
+.story-timeline { position: relative; display: grid; gap: 0; }
+.story-item {
+  position: relative;
+  padding-inline-start: 34px;
+  padding-bottom: clamp(26px, 4vw, 44px);
+}
+.story-item::before { /* خط عمودی */
+  content: ''; position: absolute; inset-inline-start: 7px; top: 22px; bottom: -4px;
+  width: 2px; background: var(--line);
+}
+.story-item:last-child::before { display: none; }
+.story-item::after { /* نقطه */
+  content: ''; position: absolute; inset-inline-start: 0; top: 7px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--bg); border: 3.5px solid var(--brand);
+  transition: transform var(--dur-3) var(--ease-spring), background-color var(--dur-2) var(--ease);
+}
+.story-item:hover::after { transform: scale(1.25); background: var(--gold); }
+.story-item__year {
+  display: inline-block; font-weight: 800; color: var(--brand);
+  font-size: .92rem; margin-bottom: 4px;
+}
+.story-item h3 { margin-bottom: 8px; }
+.story-item p { color: var(--ink-2); font-size: .96rem; }
+
+/* کارت تیم */
+.team-card {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); overflow: hidden;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-2); }
+.team-card:active { transform: translateY(-2px) scale(.99); }
+.team-card .ph { aspect-ratio: 3/3.4; overflow: hidden; background: var(--bg-soft); }
+.team-card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-4) var(--ease); }
+.team-card:hover .ph img { transform: scale(1.05); }
+.team-card .info { padding: 18px 20px 20px; display: grid; gap: 3px; }
+.team-card .info b { font-size: 1.02rem; }
+.team-card .info .role { color: var(--brand); font-size: .86rem; font-weight: 700; }
+.team-card .info .cred { color: var(--ink-3); font-size: .8rem; }
+
+/* ---------- صفحهٔ تماس ---------- */
+.contact-grid {
+  display: grid; grid-template-columns: .95fr 1.05fr;
+  gap: clamp(24px, 4vw, 48px); align-items: start;
+}
+@media (max-width: 980px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-cards { display: grid; gap: 14px; }
+.contact-card {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 20px 22px;
+  transition: transform var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.contact-card:hover { transform: translateX(-4px); border-color: #DCD2B8; box-shadow: var(--shadow-1); }
+.contact-card__ico {
+  width: 48px; height: 48px; flex: none; border-radius: 14px;
+  display: grid; place-items: center;
+  background: var(--brand-ink); color: var(--brand); border: 1px solid #F0D6D2;
+}
+.contact-card__ico .icon { width: 21px; height: 21px; }
+.contact-card b { display: block; margin-bottom: 3px; }
+.contact-card p, .contact-card a { color: var(--ink-2); font-size: .93rem; }
+.contact-card a:hover { color: var(--brand); }
+.contact-card .phones { display: grid; gap: 2px; }
+
+/* ---------- فرم‌ها (ورود/ثبت‌نام/مشاوره) ---------- */
+.auth-shell {
+  min-height: 100svh; display: grid; place-items: center;
+  padding-top: calc(var(--header-h) + 30px); padding-bottom: 50px;
+}
+.auth-card {
+  width: min(460px, 100%);
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-xl); padding: clamp(26px, 4vw, 42px);
+  box-shadow: var(--shadow-1);
+  display: grid; gap: 18px;
+}
+.auth-card .logo-mark { height: 44px; }
+.auth-card h1 { font-size: 1.5rem; }
+.auth-card .hint-line { font-size: var(--fs-sm); color: var(--ink-3); }
+.auth-card .alt-action { font-size: var(--fs-sm); color: var(--ink-3); text-align: center; }
+.auth-card .alt-action a { color: var(--brand); font-weight: 700; }
+.auth-sep {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--ink-3); font-size: var(--fs-xs);
+}
+.auth-sep::before, .auth-sep::after { content: ''; height: 1px; background: var(--line); flex: 1; }
+
+.form-card {
+  width: min(680px, 100%);
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-xl); padding: clamp(26px, 4vw, 42px);
+  display: grid; gap: 18px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+.form-grid .full { grid-column: 1 / -1; }
+
+/* ---------- وبلاگ و مقاله ---------- */
+.blog-featured {
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: 0; border-radius: var(--r-xl); overflow: hidden;
+  border: 1px solid var(--line); background: var(--paper);
+  transition: box-shadow var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+}
+.blog-featured:hover { box-shadow: var(--shadow-2); transform: translateY(-4px); }
+.blog-featured .media { min-height: 300px; }
+.blog-featured .media img { width: 100%; height: 100%; object-fit: cover; }
+.blog-featured .body { padding: clamp(24px, 3.4vw, 40px); display: grid; gap: 12px; align-content: center; }
+@media (max-width: 900px) { .blog-featured { grid-template-columns: 1fr; } .blog-featured .media { min-height: 220px; } }
+
+.article-body {
+  width: min(760px, 100%); margin-inline: auto;
+  display: grid; gap: 22px;
+}
+.article-body .lead { font-size: 1.14rem; }
+.article-theme {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 22px 24px;
+  display: grid; gap: 6px;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.article-theme:hover { transform: translateX(-4px); box-shadow: var(--shadow-1); }
+.article-theme b { font-size: 1.04rem; }
+.article-theme .sub { color: var(--brand); font-size: .84rem; font-weight: 700; }
+.article-theme p { color: var(--ink-2); font-size: .93rem; }
+.article-cover {
+  width: min(860px, 100%); margin-inline: auto;
+  border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line);
+}
+.article-cover img { width: 100%; object-fit: cover; aspect-ratio: 16/8; }
+
+/* ---------- 404 ---------- */
+.nf-shell { min-height: 86svh; display: grid; place-items: center; text-align: center; padding-top: var(--header-h); }
+.nf-code {
+  font-size: clamp(6rem, 20vw, 12rem); font-weight: 900; line-height: 1;
+  color: var(--brand); position: relative; display: inline-block;
+}
+.nf-code .flower { position: absolute; inset-inline-end: -34px; top: 4px; color: var(--gold); width: 46px; animation: nfSpin 9s linear infinite; }
+@keyframes nfSpin { to { transform: rotate(360deg); } }
+
+/* ---------- رتبه‌ها ---------- */
+.rank-band {
+  background: var(--brand-ink); border: 1px solid #F0D6D2;
+  border-radius: var(--r-xl); padding: clamp(26px, 4vw, 46px);
+}
+.rank-cover {
+  border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line);
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.rank-cover:hover { transform: translateY(-5px) rotate(.6deg); box-shadow: var(--shadow-2); }
+.rank-cover img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+
+/* ---------- مراحل مشاوره ---------- */
+.steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+@media (max-width: 860px) { .steps-row { grid-template-columns: 1fr; } }
+.step-card {
+  position: relative; counter-increment: step;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 26px 24px;
+}
+.step-card::before {
+  content: counter(step, persian);
+  position: absolute; top: -16px; inset-inline-start: 22px;
+  width: 34px; height: 34px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: var(--ink); color: var(--bg); font-weight: 800;
+}
+.step-card b { display: block; margin-bottom: 6px; }
+.step-card p { color: var(--ink-2); font-size: .9rem; }
+
+/* دوپاتریپ/دوپاواک تم‌ها */
+.theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 1000px) { .theme-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .theme-grid { grid-template-columns: 1fr; } }
+.theme-card {
+  position: relative;
+  border-radius: var(--r-lg); padding: 26px 26px 24px;
+  border: 1px solid var(--line); background: var(--paper);
+  overflow: hidden;
+  transition: transform var(--dur-3) var(--ease), box-shadow var(--dur-3) var(--ease);
+}
+.theme-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-2); }
+.theme-card__ico {
+  width: 50px; height: 50px; border-radius: 15px;
+  display: grid; place-items: center; margin-bottom: 14px;
+}
+.theme-card__ico .icon { width: 23px; height: 23px; }
+.theme-card b { display: block; font-size: 1.06rem; margin-bottom: 2px; }
+.theme-card .sub { font-size: .84rem; font-weight: 700; margin-bottom: 8px; display: block; }
+.theme-card p { color: var(--ink-2); font-size: .91rem; }
