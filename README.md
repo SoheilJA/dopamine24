@@ -1,6 +1,10 @@
 # دوپامین — بازطراحی رابط کاربری
 
+[![Demo](https://img.shields.io/badge/preview-demo-4CAF50?style=for-the-badge)](https://soheilja.github.io/dopamine24/)
+
 بازطراحی کامل فرانت‌اند وب‌سایت **گروه علمی آموزشی دوپامین** (dopamine24.ir) — وب‌سایت چندصفحه‌ای فارسی و راست‌به‌چپ با پلتفرم آزمون‌های خودشناسی تعاملی.
+
+> پیش‌نمایش آنلاین: **https://soheilja.github.io/dopamine24/**
 
 > این پروژه **بدون هیچ فریم‌ورک جاوااسکریپتی** (بدون React / Vue / Angular / Next.js) ساخته شده است:
 > HTML5 معنایی + CSS3 مدرن + جاوااسکریپت خالص (ES6+) + GSAP/ScrollTrigger + Lenis + آیکون‌های Lucide + فونت وزیرمتن (لوکال).
